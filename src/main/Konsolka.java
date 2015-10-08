@@ -8,14 +8,23 @@ public class Konsolka {
 	
 	// Zczytywanie strumienia wejsciowego.
 	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+	
+	// Zmienne 
+	static int procent = 0;
 
 	public static void main(String[] args) {
 		
 		// Watek w tle.
-		int i = 100;
 		Thread petelka = new Thread() {
-			System.out.println("> ");
+			public void run(){
+				if (procent <= 100) {
+					System.out.println("> Postep: " + procent + "%");
+					procent++;
+				}
+			}
 		};
+		
+		System.out.println("> Zaczac test?");
 		
 		// Zmienna pobierajaca dane z strumienia wejsciowego.
 		// Otoczona try'em w razie jakby strumieni nie byl strumieniem.
@@ -26,9 +35,7 @@ public class Konsolka {
 			System.out.println("> Czytanie nie pyknelo.");
 		}
 		// Wyswietlenie tego co sie wpisalo.
-		System.out.println("> " + consoleInput);
-		
-		
+		petelka.start();
 
 	}
 
