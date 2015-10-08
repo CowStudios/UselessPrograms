@@ -17,9 +17,12 @@ public class Konsolka {
 		// Watek w tle.
 		Thread petelka = new Thread() {
 			public void run(){
-				if (procent <= 100) {
+				while (procent <= 100) {
 					System.out.println("> Postep: " + procent + "%");
 					procent++;
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {}
 				}
 			}
 		};
